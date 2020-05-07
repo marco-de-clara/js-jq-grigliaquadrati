@@ -23,13 +23,40 @@ for (var i = 0; i < square_number; i++) {
     // store a random number
     var random_number = randomInRange(min, max);
 
+    // append a square to the grid
     $('.grid').append('<div class="square"></div>');
 
+    // append a text area to a square
     $('.square').eq(i).append('<div class="text-area"></div>');
 
+    // set square width
+    $('.square').eq(i).width('calc(' + square_side + ' - 4px)');
+
+    // set square width
+    $('.square').eq(i).height('calc(' + square_side + ' - 4px)');
+
+    // add the random number to the text area
     $('.text-area').eq(i).append(random_number);
+
+    // change background color if random_number is:
+    // zero => green
+    // even => red
+    // odd => black (default color)
+    numberColor();
 }
 
 function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function numberColor() {
+    // check if random_number is 0
+    if(random_number == 0) {
+        // zero => green color
+        $('.square').eq(i).addClass('zero');
+    // or even
+    } else if( (random_number % 2) == 0) {
+        // even => red color
+        $('.square').eq(i).addClass('red');
+    }
 }
